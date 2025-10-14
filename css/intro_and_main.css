@@ -1,0 +1,173 @@
+:root {
+  --bg:#000;
+  --accent:#f7c948;
+  --white:#fff;
+  --font-sans:"Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --header-h:64px;
+}
+
+html, body {
+  margin:0; padding:0; height:100%;
+  background:var(--bg);
+  color:var(--white);
+  font-family:var(--font-sans);
+  overflow:hidden;
+}
+
+/* ========== СТАРТОВЫЙ ЭКРАН ========== */
+.start-screen {
+  position:fixed;
+  inset:0;
+  background:radial-gradient(circle at center, #0a0a0a 0%, #000 100%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:200;
+}
+
+.dep-btn {
+  font-size:clamp(28px,5vw,48px);
+  font-weight:900;
+  padding:18px 48px;
+  color:#000;
+  background:linear-gradient(145deg, #ffd84c, #ffb800);
+  border:none;
+  border-radius:18px;
+  box-shadow:0 0 40px rgba(255,215,0,0.4), inset 0 0 10px rgba(255,255,255,0.3);
+  cursor:pointer;
+  transition:all 0.25s ease;
+}
+.dep-btn:hover {
+  transform:scale(1.07);
+  box-shadow:0 0 60px rgba(255,215,0,0.6);
+}
+.dep-btn:active {
+  transform:scale(0.97);
+  background:linear-gradient(145deg, #ffb800, #f5a700);
+}
+
+/* ========== ИНТРО-ЭКРАН ========== */
+.intro {
+  position:fixed;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#000;
+  overflow:hidden;
+  z-index:100;
+}
+
+.subtitles {
+  text-align:center;
+  font-weight:700;
+  font-size:clamp(28px,6vw,84px);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  height:100%;
+}
+
+.line {
+  opacity:0;
+  display:block;
+  margin:12px 0;
+  transform:translateY(20px) scale(0.95);
+}
+
+/* Плавное появление текста */
+@keyframes popIn {
+  0% { opacity:0; transform:translateY(40px) scale(0.8) rotate(-2deg); filter:blur(5px); }
+  60% { opacity:1; transform:translateY(-6px) scale(1.05) rotate(2deg); filter:blur(0); }
+  100% { opacity:1; transform:translateY(0) scale(1); }
+}
+.line.show { animation: popIn 1s cubic-bezier(.2,.9,.25,1) forwards; }
+
+/* Единое дрожание */
+@keyframes shake {
+  0%,100%{ transform:translateX(0) rotate(0deg); }
+  20%{ transform:translateX(-5px) rotate(-1deg); }
+  40%{ transform:translateX(5px) rotate(1deg); }
+  60%{ transform:translateX(-3px) rotate(-0.8deg); }
+  80%{ transform:translateX(3px) rotate(0.6deg); }
+}
+.line.shake { animation: shake 1s ease-in-out infinite; }
+
+/* ========== АНИМАЦИЯ ВАЛЮТЫ ========== */
+.currency-layer {
+  position:absolute; inset:0;
+  pointer-events:none;
+  z-index:10;
+  overflow:hidden;
+}
+
+.currency {
+  position:absolute;
+  bottom:-10%;
+  font-size:24px;
+  color:rgba(255,255,255,0.8);
+  text-shadow:0 2px 6px rgba(0,0,0,0.6);
+  animation-name: riseFade;
+  animation-timing-function: linear;
+  animation-iteration-count:1;
+}
+
+@keyframes riseFade {
+  0% { transform:translateY(0); opacity:0; }
+  10% { opacity:1; }
+  100% { transform:translateY(-140vh) scale(1.2); opacity:0; }
+}
+
+/* ========== ОСНОВНОЙ САЙТ ========== */
+.site {
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .8s ease;
+  overflow:hidden;
+}
+.site.visible {
+  opacity:1;
+  pointer-events:auto;
+}
+
+header.app-header {
+  height:var(--header-h);
+  display:flex;
+  align-items:center;
+  padding:0 20px;
+  background:linear-gradient(90deg,#0b0b0b,#111);
+  border-bottom:1px solid rgba(255,255,255,0.03);
+  z-index:20;
+}
+
+.nav {
+  display:flex;
+  gap:12px;
+}
+.nav a {
+  color:var(--white);
+  text-decoration:none;
+  font-weight:700;
+  padding:10px 14px;
+  border-radius:8px;
+}
+.nav a.active {
+  background:var(--accent);
+  color:#000;
+}
+
+main.content {
+  flex:1;
+  padding:28px;
+  background:linear-gradient(180deg,#050505,#0b0b0b);
+  position:relative;
+  z-index:15;
+}
+
+@media (max-width:640px) {
+  .subtitles { font-size:clamp(20px,9vw,40px); }
+}

@@ -1,0 +1,162 @@
+/* ==== СТИЛИ ДЛЯ КАЗИНО ==== */
+#casinoScreen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  opacity: 0;
+  transition: opacity 1.5s ease;
+  background: radial-gradient(circle at center, #0c0c0c 0%, #000 100%);
+}
+
+#casinoScreen .casino-content {
+  text-align: center;
+  z-index: 20;
+}
+
+#casinoScreen h1 {
+  font-size: 48px;
+  margin-bottom: 16px;
+  color: var(--accent);
+}
+
+#casinoScreen p {
+  font-size: 20px;
+  color: #bbb;
+}
+
+/* Валюта в казино */
+#casinoCurrencyLayer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 10;
+}
+
+#casinoCurrencyLayer .currency {
+  position: absolute;
+  bottom: -10%;
+  font-size: 24px;
+  color: rgba(255,255,255,0.12);
+  text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  animation: riseFade 7s linear 1;
+}
+
+/* ===== casino_style.css ===== */
+
+/* слот-машина */
+.slot-machine {
+  background: radial-gradient(circle at center, #1b1b1b, #000);
+  border: 4px solid #333;
+  border-radius: 16px;
+  width: 420px;
+  height: 360px;
+  margin-top: 60px;
+  position: relative;
+  overflow: visible; /* важно — рычаг виден */
+  box-shadow: 0 0 40px rgba(255, 215, 0, 0);
+  transition: box-shadow 0.5s ease;
+  padding: 18px;
+  box-sizing: border-box;
+}
+
+/* барабаны */
+.slots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  height: 200px;
+  margin-top: 10px;
+}
+
+.slot {
+  background: linear-gradient(180deg,#0b0b0b,#151515);
+  border: 2px solid #2b2b2b;
+  border-radius: 10px;
+  width: 110px;
+  height: 150px;
+  font-size: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 4px 14px rgba(0,0,0,0.6);
+}
+
+/* внутри каждого слота — вертикальный реел из .symbol */
+.reel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  will-change: transform;
+}
+
+/* каждая "ячейка" */
+.symbol {
+  height: 150px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:56px;
+  user-select:none;
+}
+
+/* плавное замедление при stop */
+.reel.stopping {
+  transition-timing-function: cubic-bezier(.2,.9,.2,1);
+}
+
+/* --- Рычаг --- */
+.lever {
+  position: absolute;
+  right: -70px; /* расстояние справа от корпуса */
+  bottom: 40px; /* чтобы pivot был у нижней точки */
+  width: 28px;
+  height: 160px;
+  background: linear-gradient(to bottom, #aaa, #555);
+  border-radius: 14px;
+  cursor: pointer;
+  transform-origin: bottom center; /* 🔥 ось вращения снизу */
+  transition: transform 0.35s cubic-bezier(.3,.6,.2,1.4);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6);
+  z-index: 40;
+}
+
+
+.lever-ball {
+  position: absolute;
+  top: -32px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 48px;
+  background: radial-gradient(circle at 25% 25%, #ff6b6b, #b30000);
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+}
+
+/* класс активного рычага (наклон назад) */
+.lever.active {
+  transform: rotate(35deg);
+}
+
+/* подсветка корпуса при выигрыше/проигрыше */
+.slot-machine.win {
+  box-shadow: 0 0 60px rgba(255, 200, 20, 0.95);
+}
+.slot-machine.lose {
+  box-shadow: 0 0 60px rgba(220, 30, 30, 0.85);
+}
+
+/* адаптация под мобилки */
+@media (max-width:480px) {
+  .slot-machine { width: 92%; height: 360px; }
+  .slot { width: 28%; height: 120px; font-size:42px; }
+  .symbol { height: 120px; font-size:44px; }
+}
