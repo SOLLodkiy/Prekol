@@ -37,7 +37,7 @@ function createLine(text) {
   return span;
 }
 
-const currencySymbols = ['$', '€', '₽', '£', '¥', '₸', '₩', '₺', '₹', '฿'];
+const currencySymbols = ['$', '€', '₽', '£', '¥', '₸'];
 function spawnCurrencies(layer, count = 12, opacity = 0.9, speed = 1) {
   for (let i = 0; i < count; i++) {
     const el = document.createElement('div');

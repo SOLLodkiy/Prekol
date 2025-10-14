@@ -25,10 +25,30 @@
   <!-- Основной интерфейс -->
   <div class="site" id="site">
     <div class="currency-layer" id="bgCurrencyLayer"></div>
-    <header class="app-header">
+    <header class="app-header" style="overflow:visible;">
       <nav class="nav">
         <a href="#" class="active" id="casinoTab">КАЗИК</a>
       </nav>
+      <div id="balance-widget">
+        <div id="balance-display">
+          <span class="label">Баланс:</span>
+          <span id="balance-amount">1000</span>
+          <span id="balance-currency">VM</span>
+          <span class="arrow">▾</span>
+        </div>
+      
+        <div id="currency-dropdown" class="hidden">
+          <div class="currency-option" data-currency="VM">VM — внутренняя валюта</div>
+          <div class="currency-option" data-currency="USD">$ — Доллар США</div>
+          <div class="currency-option" data-currency="EUR">€ — Евро</div>
+          <div class="currency-option" data-currency="KZT">₸ — Тенге</div>
+          <div class="currency-option" data-currency="RUB">₽ — Рубль</div>
+          <div class="currency-option" data-currency="JPY">¥ — Иена</div>
+          <div class="currency-option" data-currency="GBP">£ — Фунт</div>
+          <div class="currency-option" data-currency="CNY">元 — Юань</div>
+        </div>
+      </div>
+      
     </header>
 
     <main class="content">
@@ -41,6 +61,7 @@
 <!-- Скрипты -->
 <script src="js/intro_and_main.js"></script>
 <script src="js/casino_logic.js"></script>
+<script src="js/currency.js"></script>
 
 </body>
 </html>

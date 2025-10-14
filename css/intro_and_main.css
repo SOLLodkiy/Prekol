@@ -171,3 +171,101 @@ main.content {
 @media (max-width:640px) {
   .subtitles { font-size:clamp(20px,9vw,40px); }
 }
+
+/* ===== СЧЁТ В ХЭДЕРЕ ===== */
+#balance-widget {
+  position: absolute;
+  top: 10px;
+  right: 25px;
+  font-family: "Segoe UI", sans-serif;
+  color: #fff;
+  user-select: none;
+  z-index: 9999; /* ВАЖНО: чтобы выпадающее меню было поверх всего */
+}
+
+/* Основная панель */
+#balance-display {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(145deg, #202020, #2b2b2b);
+  padding: 8px 15px;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.4);
+  transition: all 0.2s ease;
+  position: relative;
+  z-index: 10001;
+}
+
+#balance-display:hover {
+  background: linear-gradient(145deg, #292929, #343434);
+  transform: translateY(-2px);
+}
+
+#balance-amount {
+  font-weight: 600;
+  font-size: 20px;
+  color: #ffd700;
+}
+
+#balance-currency {
+  font-weight: 500;
+  font-size: 18px;
+  opacity: 0.9;
+}
+
+#balance-display .arrow {
+  font-size: 14px;
+  opacity: 0.7;
+  transition: transform 0.3s;
+}
+
+#balance-display.open .arrow {
+  transform: rotate(180deg);
+}
+
+/* Меню валют */
+#currency-dropdown {
+  position: absolute;
+  right: 0;
+  top: 110%;
+  background: rgba(25, 25, 25, 0.98);
+  border-radius: 12px;
+  margin-top: 6px;
+  overflow-y: auto;
+  width: 220px;
+  max-height: 280px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition: all 0.25s ease;
+  z-index: 10000;
+}
+
+#currency-dropdown.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.currency-option {
+  padding: 10px 15px;
+  font-size: 16px;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.currency-option:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+#currency-dropdown::-webkit-scrollbar {
+  width: 6px;
+}
+#currency-dropdown::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.2);
+  border-radius: 5px;
+}

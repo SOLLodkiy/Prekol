@@ -156,7 +156,7 @@
 
 /* адаптация под мобилки */
 @media (max-width:480px) {
-  .slot-machine { width: 92%; height: 360px; }
-  .slot { width: 28%; height: 120px; font-size:42px; }
-  .symbol { height: 120px; font-size:44px; }
+  .slot-machine { width: 85%; height: 360px; }
+  .slot { width: 22%; height: 120px; font-size:42px; }
+  .symbol { height: 100px; font-size:44px; }
 }
